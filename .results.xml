@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><testsuite errors="0" failures="7" name="pytest" skips="0" tests="12" time="0.138"><testcase classname="pytests.test_index" file="pytests/test_index.py" line="10" name="test_create_table" time="0.001256704330444336"></testcase><testcase classname="pytests.test_index" file="pytests/test_index.py" line="35" name="test_alter_table" time="0.0011966228485107422"></testcase><testcase classname="pytests.test_index" file="pytests/test_index.py" line="44" name="test_insert_into" time="0.0013003349304199219"></testcase><testcase classname="pytests.test_index" file="pytests/test_index.py" line="52" name="test_update_jupiter" time="0.0012426376342773438"></testcase><testcase classname="pytests.test_index" file="pytests/test_index.py" line="61" name="test_delete_from" time="0.0011599063873291016"></testcase><testcase classname="pytests.test_index" file="pytests/test_index.py" line="71" name="test_select_all_columns_and_rows" time="0.0007452964782714844"><failure message="sqlite3.OperationalError: near &quot;&quot;SELECT * FROM planets&quot;&quot;: syntax error">def test_select_all_columns_and_rows():
+        result = [(1, &apos;Mercury&apos;, &apos;gray&apos;, 0, 0.55, 0.0), (2, &apos;Venus&apos;, &apos;yellow&apos;, 0, 0.82, 0.0), (3, &apos;Earth&apos;, &apos;blue&apos;, 1, 1.0, 0.0), (4, &apos;Mars&apos;, &apos;red&apos;, 2, 0.11, 0.0), (5, &apos;Jupiter&apos;, &apos;orange&apos;, 67, 317.9, 0.0), (6, &apos;Saturn&apos;, &apos;hazel&apos;, 62, 95.19, 1.0), (7, &apos;Uranus&apos;, &apos;light blue&apos;, 27, 14.54, 1.0), (8, &apos;Neptune&apos;, &apos;dark blue&apos;, 14, 17.15, 1.0)]
+&gt;       assert table_select.execute(select_all_columns_and_rows()).fetchall() == result
+
+pytests/test_index.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def select_all_columns_and_rows():
+&gt;       cursor.execute(&apos;&apos;&apos;&quot;SELECT * FROM planets&quot;&apos;&apos;&apos;)
+E       sqlite3.OperationalError: near &quot;&quot;SELECT * FROM planets&quot;&quot;: syntax error
+
+sql_selects.py:6: OperationalError</failure></testcase><testcase classname="pytests.test_index" file="pytests/test_index.py" line="75" name="test_select_name_and_color_of_all_planets" time="0.0010561943054199219"><failure message="sqlite3.OperationalError: no such table: planets">def test_select_name_and_color_of_all_planets():
+        result = [(&apos;Mercury&apos;, &apos;gray&apos;), (&apos;Venus&apos;, &apos;yellow&apos;), (&apos;Earth&apos;, &apos;blue&apos;), (&apos;Mars&apos;, &apos;red&apos;), (&apos;Jupiter&apos;, &apos;orange&apos;), (&apos;Saturn&apos;, &apos;hazel&apos;), (&apos;Uranus&apos;, &apos;light blue&apos;), (&apos;Neptune&apos;, &apos;dark blue&apos;)]
+&gt;       assert table_select.execute(select_name_and_color_of_all_planets()).fetchall() == result
+
+pytests/test_index.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def select_name_and_color_of_all_planets():
+&gt;       cursor.execute(&apos;&apos;&apos;&apos;&apos;&apos;&quot;SELECT name, color FROM planets&quot;&apos;&apos;&apos;&apos;&apos;&apos;).fetchall()
+E       sqlite3.OperationalError: no such table: planets
+
+sql_selects.py:9: OperationalError</failure></testcase><testcase classname="pytests.test_index" file="pytests/test_index.py" line="79" name="test_select_all_planets_with_mass_greater_than_one" time="0.0011119842529296875"><failure message="sqlite3.OperationalError: near &quot;&quot;SELECT name FROM planets WHERE mass &gt; 1&quot;&quot;: syntax error">def test_select_all_planets_with_mass_greater_than_one():
+        result = [(5, &apos;Jupiter&apos;, &apos;orange&apos;, 67, 317.9, 0.0), (6, &apos;Saturn&apos;, &apos;hazel&apos;, 62, 95.19, 1.0), (7, &apos;Uranus&apos;, &apos;light blue&apos;, 27, 14.54, 1.0), (8, &apos;Neptune&apos;, &apos;dark blue&apos;, 14, 17.15, 1.0)]
+&gt;       assert table_select.execute(select_all_planets_with_mass_greater_than_one()).fetchall() == result
+
+pytests/test_index.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def select_all_planets_with_mass_greater_than_one():
+&gt;       cursor.execute(&apos;&apos;&apos;&quot;SELECT name FROM planets WHERE mass &gt; 1&quot;&apos;&apos;&apos;).fetchall()
+E       sqlite3.OperationalError: near &quot;&quot;SELECT name FROM planets WHERE mass &gt; 1&quot;&quot;: syntax error
+
+sql_selects.py:12: OperationalError</failure></testcase><testcase classname="pytests.test_index" file="pytests/test_index.py" line="83" name="test_select_name_and_mass_of_planets_with_mass_less_than_equal_to_one" time="0.0007870197296142578"><failure message="sqlite3.OperationalError: near &quot;&quot;SELECT (name, mass) FROM planets WHERE mass &lt;= 1&quot;&quot;: syntax error">def test_select_name_and_mass_of_planets_with_mass_less_than_equal_to_one():
+        result = [(&apos;Mercury&apos;, 0.55), (&apos;Venus&apos;, 0.82), (&apos;Earth&apos;, 1.0), (&apos;Mars&apos;, 0.11)]
+&gt;       assert table_select.execute(select_name_and_mass_of_planets_with_mass_less_than_equal_to_one()).fetchall() == result
+
+pytests/test_index.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def select_name_and_mass_of_planets_with_mass_less_than_equal_to_one():
+&gt;       cursor.execute(&apos;&apos;&apos;&quot;SELECT (name, mass) FROM planets WHERE mass &lt;= 1&quot;&apos;&apos;&apos;).fetchall()
+E       sqlite3.OperationalError: near &quot;&quot;SELECT (name, mass) FROM planets WHERE mass &lt;= 1&quot;&quot;: syntax error
+
+sql_selects.py:15: OperationalError</failure></testcase><testcase classname="pytests.test_index" file="pytests/test_index.py" line="87" name="test_select_name_and_color_of_planets_with_more_than_10_moons" time="0.0007216930389404297"><failure message="sqlite3.OperationalError: near &quot;&quot;SELECT (name, color) FROM planets WHERE num_of_moons &gt; 10&quot;&quot;: syntax error">def test_select_name_and_color_of_planets_with_more_than_10_moons():
+        result = [(&apos;Jupiter&apos;, &apos;orange&apos;), (&apos;Saturn&apos;, &apos;hazel&apos;), (&apos;Uranus&apos;, &apos;light blue&apos;), (&apos;Neptune&apos;, &apos;dark blue&apos;)]
+&gt;       assert table_select.execute(select_name_and_color_of_planets_with_more_than_10_moons()).fetchall() == result
+
+pytests/test_index.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def select_name_and_color_of_planets_with_more_than_10_moons():
+&gt;       cursor.execute(&apos;&apos;&apos;&quot;SELECT (name, color) FROM planets WHERE num_of_moons &gt; 10&quot;&apos;&apos;&apos;).fetchall()
+E       sqlite3.OperationalError: near &quot;&quot;SELECT (name, color) FROM planets WHERE num_of_moons &gt; 10&quot;&quot;: syntax error
+
+sql_selects.py:18: OperationalError</failure></testcase><testcase classname="pytests.test_index" file="pytests/test_index.py" line="91" name="test_select_all_planets_with_moons_and_mass_less_than_one" time="0.0007810592651367188"><failure message="sqlite3.OperationalError: near &quot;&quot;SELECT name FROM planets WHERE num_of_moons  &lt; 1 AND mass &lt; 1&quot;&quot;: syntax error">def test_select_all_planets_with_moons_and_mass_less_than_one():
+        result = [(4, &apos;Mars&apos;, &apos;red&apos;, 2, 0.11, 0.0)]
+&gt;       assert table_select.execute(select_all_planets_with_moons_and_mass_less_than_one()).fetchall() == result
+
+pytests/test_index.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def select_all_planets_with_moons_and_mass_less_than_one():
+&gt;       cursor.execute(&apos;&apos;&apos;&quot;SELECT name FROM planets WHERE num_of_moons  &lt; 1 AND mass &lt; 1&quot;&apos;&apos;&apos;).fetchall()
+E       sqlite3.OperationalError: near &quot;&quot;SELECT name FROM planets WHERE num_of_moons  &lt; 1 AND mass &lt; 1&quot;&quot;: syntax error
+
+sql_selects.py:21: OperationalError</failure></testcase><testcase classname="pytests.test_index" file="pytests/test_index.py" line="95" name="test_select_name_and_color_of_all_blue_planets" time="0.0008208751678466797"><failure message="sqlite3.OperationalError: near &quot;&quot;SELECT (name, color) FROM planets WHERE color = &apos;blue&apos;&quot;&quot;: syntax error">def test_select_name_and_color_of_all_blue_planets():
+        result = [(&apos;Earth&apos;, &apos;blue&apos;), (&apos;Uranus&apos;, &apos;light blue&apos;), (&apos;Neptune&apos;, &apos;dark blue&apos;)]
+&gt;       assert table_select.execute(select_name_and_color_of_all_blue_planets()).fetchall() == result
+
+pytests/test_index.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def select_name_and_color_of_all_blue_planets():
+&gt;       cursor.execute(&apos;&apos;&apos;&quot;SELECT (name, color) FROM planets WHERE color = &apos;blue&apos;&quot;&apos;&apos;&apos;).fetchall()
+E       sqlite3.OperationalError: near &quot;&quot;SELECT (name, color) FROM planets WHERE color = &apos;blue&apos;&quot;&quot;: syntax error
+
+sql_selects.py:24: OperationalError</failure></testcase></testsuite>
